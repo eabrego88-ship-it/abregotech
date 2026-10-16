@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABREGO TECH — Soporte Técnico y Servicios IT en Panamá</title>
+  <style>
+    :root {
+      --primary: #0052cc;
+      --primary-dark: #003d99;
+      --secondary: #172b4d;
+      --accent: #00b8d9;
+      --bg-light: #f4f5f7;
+      --card-bg: #ffffff;
+      --text-dark: #091e42;
+      --text-muted: #5e6c84;
+      --border-color: #ebecf0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--secondary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Reglas Comerciales / Avisos */
+    .notice-box {
+      background-color: #deebff;
+      border-left: 5px solid var(--primary);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .notice-box ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Paquetes Destacados */
+    .packages-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .package-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .package-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .package-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--secondary);
+      margin: 0.5rem 0;
+    }
+
+    /* Buscador y Filtros */
+    .search-section {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Tablas de Servicios */
+    .category-block {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .category-block h2 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .service-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .service-table th, .service-table td {
+      padding: 0.8rem 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .service-table th {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .service-name {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .service-price {
+      font-weight: bold;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .btn-action {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background-color: var(--primary-dark);
+    }
+
+    footer {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    /* Modal / Popup */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+
+    .modal-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      cursor: pointer;
+      text-decoration: underline;
+      display: block;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .service-table, .service-table tbody, .service-table tr, .service-table td {
+        display: block;
+        width: 100%;
+      }
+      .service-table thead {
+        display: none;
+      }
+      .service-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 0.8rem;
+      }
+      .service-table td {
+        padding: 0.3rem 0;
+        border: none;
+      }
+      .service-price {
+        font-size: 1.1rem;
+        margin: 0.4rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ABREGO TECH</h1>
+    <p>Soporte Técnico Especializado en Windows, Apple y Redes Empresariales | Ciudad de Panamá</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Aviso Comercial -->
+    <div class="notice-box">
+      <strong>Información Importante del Catálogo:</strong>
+      <ul>
+        <li>Los precios expuestos corresponden a la <strong>mano de obra base (B/.)</strong> y no incluyen piezas, repuestos ni licencias de software de pago.</li>
+        <li>Los diagnósticos avanzados o revisiones complejas se cotizan formalmente previo a la reparación.</li>
+        <li>Precios no incluyen ITBMS cuando aplique. En víscera de reparaciones físicas o trabajos de red en sitio, se confirmará el presupuesto exacto según diagnóstico.</li>
+      </ul>
+    </div>
+
+    <!-- Paquetes Destacados -->
+    <h2 class="packages-title">Paquetes Recomendados</h2>
+    <div class="packages-grid">
+      <div class="package-card">
+        <div>
+          <h3>Paquete PC Rápida</h3>
+          <p>Limpieza de software, optimización de inicio, actualización compatible y revisión general del sistema.</p>
+        </div>
+        <div>
+          <div class="package-price">B/. 45.00</div>
+          <button class="btn-action" onclick="solicitarServicio('Paquete PC Rápida', 'B/. 45.00')">Solicitar Paquete</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div>
+          <h3>Paquete Mantenimiento Pro</h3>
+          <p>Limpieza interna profunda, revisión de pasta térmica, optimización de software y pruebas de rendimiento.</p>
+        </div>
+        <div>
+          <div class="package-price">B/. 45.00</div>
+          <button class="btn-action" onclick="solicitarServicio('Paquete Mantenimiento Pro', 'B/. 45.00')">Solicitar Paquete</button>
+        </div>
+      </div>
+
+      <div class="package-card">
+        <div>
+          <h3>Paquete Equipo Nuevo</h3>
+          <p>Configuración inicial, instalación de controladores, navegador, configuración de correo y pruebas de estado.</p>
+        </div>
+        <div>
+          <div class="package-price">B/. 40.00</div>
+          <button class="btn-action" onclick="solicitarServicio('Paquete Equipo Nuevo', 'B/. 40.00')">Solicitar Paquete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buscador de Servicios -->
+    <div class="search-section">
+      <h2>Catálogo de Servicios</h2>
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar servicio (ej. SSD, virus, pantalla, Mac)..." onkeyup="filtrarServicios()">
+    </div>
+
+    <!-- Filtros de Categorías -->
+    <div class="category-tabs" id="categoryTabs">
+      <button class="tab-btn active" onclick="filtrarCategoria('todas')">Todas las categorías</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-1')">Windows y Software</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-2')">Mantenimiento Físico</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-3')">Reparación de Hardware</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-4')">Apple y macOS</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-5')">Seguridad y Datos</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-6')">Redes y Wi-Fi</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-7')">Impresoras</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-8')">Soporte Remoto/Domicilio</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-9')">Servicios Empresariales</button>
+      <button class="tab-btn" onclick="filtrarCategoria('cat-10')">Configuración y Asesoría</button>
+    </div>
+
+    <!-- Contenido de Categorías -->
+    <div id="catalogContent">
+
+      <!-- Categoría 1 -->
+      <div class="category-block cat-1">
+        <h2>1. Windows y Soporte de Software</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Diagnóstico básico</td><td>Revisión inicial de fallas</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico básico', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Diagnóstico avanzado</td><td>Pruebas de hardware y software, informe técnico</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico avanzado', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de Windows</td><td>Instalación del sistema operativo</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de Windows', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de Windows con configuración</td><td>Sistema, controladores y ajustes básicos</td><td class="service-price">B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de Windows con configuración', 'B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Formateo de equipo</td><td>Borrado y reinstalación, con autorización</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Formateo de equipo', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Formateo con respaldo</td><td>Copia de datos, reinstalación y restauración</td><td class="service-price">B/. 60.00</td><td><button class="btn-action" onclick="solicitarServicio('Formateo con respaldo', 'B/. 60.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Reparación de inicio</td><td>Corrección de errores de arranque</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Reparación de inicio', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Reparación de archivos del sistema</td><td>Corrección de errores de Windows</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Reparación de archivos del sistema', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Actualización de Windows</td><td>Instalación de actualizaciones compatibles</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Actualización de Windows', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de controladores</td><td>Drivers de red, audio, video y otros</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de controladores', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de programas</td><td>Por aplicación, sin incluir licencia</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de programas', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración inicial de PC nueva</td><td>Usuarios, actualizaciones y ajustes</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración inicial de PC nueva', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Optimización de Windows</td><td>Inicio, servicios y rendimiento</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Optimización de Windows', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Eliminación de programas no deseados</td><td>Limpieza de aplicaciones innecesarias</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Eliminación de programas no deseados', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Eliminación de virus y malware</td><td>Análisis, limpieza y verificación</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Eliminación de virus y malware', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Recuperación de Windows</td><td>Reparación intentando conservar datos</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Recuperación de Windows', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de impresora</td><td>Instalación y prueba de impresión</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de impresora', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de correo electrónico</td><td>Configuración de cuenta en un dispositivo</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de correo electrónico', 'B/. 15.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 2 -->
+      <div class="category-block cat-2">
+        <h2>2. Mantenimiento Físico de Computadoras</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Limpieza externa</td><td>Carcasa, teclado y pantalla</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza externa', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Limpieza interna de laptop</td><td>Ventilador, disipador y polvo acumulado</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza interna de laptop', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Limpieza interna de PC de escritorio</td><td>Limpieza de componentes y ventiladores</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza interna de PC de escritorio', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Mantenimiento completo de laptop</td><td>Limpieza interna, revisión térmica y pruebas</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Mantenimiento completo de laptop', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Mantenimiento completo de PC</td><td>Limpieza interna y pruebas generales</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Mantenimiento completo de PC', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de pasta térmica</td><td>CPU de laptop o PC, acceso estándar</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de pasta térmica', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Mantenimiento de PC gamer</td><td>Limpieza profunda y revisión térmica</td><td class="service-price">B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Mantenimiento de PC gamer', 'B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Revisión de temperaturas</td><td>Pruebas de CPU, GPU y ventiladores</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Revisión de temperaturas', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Limpieza de teclado</td><td>Limpieza superficial y revisión</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza de teclado', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Limpieza de ventilador</td><td>Servicio puntual, según acceso</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza de ventilador', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Revisión de batería</td><td>Diagnóstico de capacidad y carga</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Revisión de batería', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Revisión de cargador</td><td>Pruebas de alimentación y voltaje</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Revisión de cargador', 'B/. 10.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 3 -->
+      <div class="category-block cat-3">
+        <h2>3. Reparación y Actualización de Hardware</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Instalación de memoria RAM</td><td>Montaje y pruebas</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de memoria RAM', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de SSD SATA</td><td>Instalación y verificación</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de SSD SATA', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de SSD M.2 NVMe</td><td>Instalación y pruebas</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de SSD M.2 NVMe', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Clonación de disco</td><td>Migración del sistema a otra unidad</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Clonación de disco', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación limpia en SSD nuevo</td><td>Sistema, drivers y configuración</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación limpia en SSD nuevo', 'B/. 40.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de teclado de laptop</td><td>Desmontaje y montaje, sin pieza</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de teclado de laptop', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de batería de laptop</td><td>Mano de obra, sin batería</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de batería de laptop', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de pantalla de laptop</td><td>Mano de obra, sin pantalla</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de pantalla de laptop', 'B/. 40.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de bisagras</td><td>Mano de obra, según complejidad</td><td class="service-price">B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de bisagras', 'B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de ventilador</td><td>Mano de obra, sin repuesto</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de ventilador', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de fuente de poder de PC</td><td>Instalación y pruebas</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de fuente de poder de PC', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de tarjeta de red Wi-Fi</td><td>Instalación y configuración</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de tarjeta de red Wi-Fi', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Reparación de puerto de carga</td><td>Diagnóstico y presupuesto previo</td><td class="service-price">Desde B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Reparación de puerto de carga', 'Desde B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Reparación de placa madre</td><td>Diagnóstico y presupuesto previo</td><td class="service-price">Desde B/. 60.00</td><td><button class="btn-action" onclick="solicitarServicio('Reparación de placa madre', 'Desde B/. 60.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Ensamblaje de PC</td><td>Montaje de componentes y pruebas</td><td class="service-price">B/. 75.00</td><td><button class="btn-action" onclick="solicitarServicio('Ensamblaje de PC', 'B/. 75.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de tarjeta gráfica</td><td>Montaje, drivers y pruebas</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de tarjeta gráfica', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Sustitución de pantalla rota</td><td>Mano de obra, sin repuesto</td><td class="service-price">B/. 40.00 - B/. 70.00</td><td><button class="btn-action" onclick="solicitarServicio('Sustitución de pantalla rota', 'B/. 40.00–70.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 4 -->
+      <div class="category-block cat-4">
+        <h2>4. Servicios para Apple y macOS</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Diagnóstico de MacBook</td><td>Revisión de fallas y funcionamiento</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico de MacBook', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación o recuperación de macOS</td><td>Según modelo y compatibilidad</td><td class="service-price">B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación o recuperación de macOS', 'B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración inicial de Mac</td><td>Usuarios, ajustes y actualizaciones</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración inicial de Mac', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Optimización de macOS</td><td>Revisión de almacenamiento y aplicaciones</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Optimización de macOS', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Actualización de macOS</td><td>Actualización compatible y pruebas</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Actualización de macOS', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de aplicaciones para Mac</td><td>Por aplicación, sin licencia</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de aplicaciones para Mac', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Migración de Windows a Mac</td><td>Transferencia de archivos y configuración</td><td class="service-price">B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Migración de Windows a Mac', 'B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Respaldo de datos de Mac</td><td>Copia de documentos y archivos accesibles</td><td class="service-price">Desde B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Respaldo de datos de Mac', 'Desde B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de iCloud</td><td>Cuenta, sincronización y ajustes</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de iCloud', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de Time Machine</td><td>Preparación y prueba del respaldo</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de Time Machine', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de SSD en Mac compatible</td><td>Mano de obra; depende del modelo</td><td class="service-price">Desde B/. 50.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de SSD en Mac compatible', 'Desde B/. 50.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de batería de MacBook</td><td>Mano de obra, sin batería</td><td class="service-price">Desde B/. 45.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de batería de MacBook', 'Desde B/. 45.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Cambio de pantalla de MacBook</td><td>Mano de obra, sin pantalla</td><td class="service-price">Desde B/. 70.00</td><td><button class="btn-action" onclick="solicitarServicio('Cambio de pantalla de MacBook', 'Desde B/. 70.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Recuperación de archivos de Mac</td><td>Según estado y tipo de almacenamiento</td><td class="service-price">Desde B/. 50.00</td><td><button class="btn-action" onclick="solicitarServicio('Recuperación de archivos de Mac', 'Desde B/. 50.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 5 -->
+      <div class="category-block cat-5">
+        <h2>5. Seguridad, Datos y Recuperación</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Respaldo de hasta 100 GB</td><td>Copia de archivos accesibles a unidad del cliente</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Respaldo de hasta 100 GB', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Respaldo de 100–500 GB</td><td>Copia de documentos y archivos</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Respaldo de 100–500 GB', 'B/. 40.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Respaldo de 500 GB–1 TB</td><td>Transferencia y verificación básica</td><td class="service-price">B/. 55.00</td><td><button class="btn-action" onclick="solicitarServicio('Respaldo de 500 GB–1 TB', 'B/. 55.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Transferencia de datos entre equipos</td><td>Migración de archivos y carpetas</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Transferencia de datos entre equipos', 'B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Recuperación lógica de archivos</td><td>Archivos borrados accidentalmente, si es viable</td><td class="service-price">Desde B/. 50.00</td><td><button class="btn-action" onclick="solicitarServicio('Recuperación lógica de archivos', 'Desde B/. 50.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Clonación de disco defectuoso</td><td>Si la unidad permite lectura</td><td class="service-price">Desde B/. 50.00</td><td><button class="btn-action" onclick="solicitarServicio('Clonación de disco defectuoso', 'Desde B/. 50.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de antivirus</td><td>Instalación y análisis, sin licencia de pago</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de antivirus', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de autenticación multifactor</td><td>Una cuenta o servicio</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de MFA', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Eliminación de adware del navegador</td><td>Limpieza de extensiones y ajustes</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Eliminación de adware del navegador', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de copias de seguridad</td><td>Plan local o nube del cliente</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de copias de seguridad', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Evaluación de seguridad básica</td><td>Revisión de actualizaciones, cuentas y protección</td><td class="service-price">B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Evaluación de seguridad básica', 'B/. 35.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 6 -->
+      <div class="category-block cat-6">
+        <h2>6. Redes, Wi-Fi e Infraestructura</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Diagnóstico de red</td><td>Revisión básica de conectividad</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico de red', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de router</td><td>Wi-Fi, contraseña y seguridad</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de router', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de repetidor Wi-Fi</td><td>Emparejamiento y prueba</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de repetidor Wi-Fi', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de punto de acceso</td><td>Instalación lógica y pruebas</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de punto de acceso', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de switch</td><td>Conexión y configuración básica</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de switch', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de red local</td><td>Comunicación entre equipos</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de red local', 'B/. 40.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Compartir carpetas e impresoras</td><td>Permisos y acceso local</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Compartir carpetas e impresoras', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de IP fija</td><td>Por dispositivo</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de IP fija', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Diagnóstico de cableado</td><td>Revisión de conectores y enlaces</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico de cableado', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Ponchado de cable de red</td><td>Por extremo, sin materiales</td><td class="service-price">B/. 8.00</td><td><button class="btn-action" onclick="solicitarServicio('Ponchado de cable de red', 'B/. 8.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de punto de red</td><td>Mano de obra, recorrido sencillo</td><td class="service-price">Desde B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de punto de red', 'Desde B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de VPN</td><td>Por equipo, con servicio existente</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de VPN', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de acceso remoto</td><td>Herramienta autorizada y pruebas</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de acceso remoto', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de NAS</td><td>Configuración básica de almacenamiento</td><td class="service-price">Desde B/. 85.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de NAS', 'Desde B/. 85.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de respaldo en red</td><td>Carpeta compartida y permisos</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de respaldo en red', 'B/. 40.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 7 -->
+      <div class="category-block cat-7">
+        <h2>7. Impresoras y Periféricos</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Instalación de impresora USB</td><td>Instalación y prueba</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de impresora USB', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de impresora Wi-Fi</td><td>Conexión inalámbrica y pruebas</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de impresora Wi-Fi', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Compartir impresora en red</td><td>Configuración para varios equipos</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Compartir impresora en red', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Diagnóstico de impresora</td><td>Revisión de fallas comunes</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Diagnóstico de impresora', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Limpieza externa de impresora</td><td>Limpieza de carcasa y bandejas</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Limpieza externa de impresora', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Mantenimiento de impresora</td><td>Limpieza accesible y pruebas</td><td class="service-price">Desde B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Mantenimiento de impresora', 'Desde B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de escáner</td><td>Instalación y prueba de digitalización</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de escáner', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de webcam</td><td>Conexión y configuración</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de webcam', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de monitor externo</td><td>Resolución, frecuencia y conexiones</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de monitor externo', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de estación de trabajo</td><td>Monitor, teclado, mouse y periféricos</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de estación de trabajo', 'B/. 25.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 8 -->
+      <div class="category-block cat-8">
+        <h2>8. Soporte Remoto y a Domicilio</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Soporte remoto básico</td><td>Hasta 30 minutos</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Soporte remoto básico', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Soporte remoto estándar</td><td>Hasta 60 minutos</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Soporte remoto estándar', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Soporte remoto extendido</td><td>Hasta 2 horas</td><td class="service-price">B/. 40.00</td><td><button class="btn-action" onclick="solicitarServicio('Soporte remoto extendido', 'B/. 40.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Visita técnica a domicilio</td><td>Desplazamiento dentro de zona cercana</td><td class="service-price">Desde B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Visita técnica a domicilio', 'Desde B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Visita técnica empresarial</td><td>Atención en oficina, hasta 1 hora</td><td class="service-price">Desde B/. 35.00</td><td><button class="btn-action" onclick="solicitarServicio('Visita técnica empresarial', 'Desde B/. 35.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Hora adicional a domicilio</td><td>Después de la primera hora</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Hora adicional a domicilio', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Atención urgente</td><td>Prioridad fuera de agenda, según disponibilidad</td><td class="service-price">+ B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Atención urgente', '+ B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Retiro y entrega de equipo</td><td>Coordinación de transporte</td><td class="service-price">Desde B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Retiro y entrega de equipo', 'Desde B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Soporte fuera de horario</td><td>Según disponibilidad</td><td class="service-price">Desde B/. 35.00 / h</td><td><button class="btn-action" onclick="solicitarServicio('Soporte fuera de horario', 'Desde B/. 35.00/h')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 9 -->
+      <div class="category-block cat-9">
+        <h2>9. Servicios Empresariales y Contratos</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Sugerido</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Mantenimiento preventivo empresarial</td><td>Por computadora, revisión estándar</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Mantenimiento preventivo empresarial', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Inventario de equipos informáticos</td><td>Registro de activos, marca, modelo y serial</td><td class="service-price">B/. 5.00 / equipo</td><td><button class="btn-action" onclick="solicitarServicio('Inventario de equipos informáticos', 'B/. 5.00 por equipo')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Informe técnico</td><td>Reporte de diagnóstico y recomendaciones</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Informe técnico', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de correo corporativo</td><td>Por usuario</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de correo corporativo', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de Microsoft 365</td><td>Por usuario, sin licencias</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de Microsoft 365', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Alta o configuración de usuario Windows</td><td>Por equipo</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Alta o configuración de usuario Windows', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de permisos compartidos</td><td>Por recurso o carpeta</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de permisos compartidos', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Documentación de red básica</td><td>Diagrama y listado de equipos</td><td class="service-price">Desde B/. 75.00</td><td><button class="btn-action" onclick="solicitarServicio('Documentación de red básica', 'Desde B/. 75.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Auditoría básica de equipos</td><td>Revisión de actualizaciones y seguridad</td><td class="service-price">B/. 35.00 / equipo</td><td><button class="btn-action" onclick="solicitarServicio('Auditoría básica de equipos', 'B/. 35.00 por equipo')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Plan de mantenimiento mensual</td><td>Hasta 5 equipos, una visita programada</td><td class="service-price">Desde B/. 100.00 / mes</td><td><button class="btn-action" onclick="solicitarServicio('Plan de mantenimiento mensual', 'Desde B/. 100.00/mes')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Soporte mensual para pequeña empresa</td><td>Hasta 5 equipos y horas acordadas</td><td class="service-price">Desde B/. 150.00 / mes</td><td><button class="btn-action" onclick="solicitarServicio('Soporte mensual para pequeña empresa', 'Desde B/. 150.00/mes')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Hora técnica empresarial adicional</td><td>Fuera del alcance contratado</td><td class="service-price">B/. 30.00 / h</td><td><button class="btn-action" onclick="solicitarServicio('Hora técnica empresarial adicional', 'B/. 30.00/h')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Categoría 10 -->
+      <div class="category-block cat-10">
+        <h2>10. Configuración, Instalación y Asesoría Adicional</h2>
+        <table class="service-table">
+          <thead>
+            <tr><th>Servicio</th><th>Descripción</th><th>Precio Mano de Obra</th><th>Acción</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="service-name">Configuración de equipo nuevo</td><td>Ajustes iniciales y pruebas</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de equipo nuevo', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de software empresarial</td><td>Por aplicación, sin licencia</td><td class="service-price">B/. 15.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de software empresarial', 'B/. 15.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de suite ofimática</td><td>Instalación y cuenta del cliente</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de suite ofimática', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de firma de correo</td><td>Por usuario</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de firma de correo', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de navegador</td><td>Marcadores, privacidad y ajustes</td><td class="service-price">B/. 10.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de navegador', 'B/. 10.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Migración de perfil de usuario</td><td>Documentos y configuración básica</td><td class="service-price">B/. 30.00</td><td><button class="btn-action" onclick="solicitarServicio('Migración de perfil de usuario', 'B/. 30.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de OneDrive</td><td>Sincronización y carpetas</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de OneDrive', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de Google Drive</td><td>Sincronización y carpetas</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de Google Drive', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Capacitación básica de Windows</td><td>Sesión de 1 hora</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Capacitación básica de Windows', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Asesoría de compra tecnológica</td><td>Recomendación de equipo o componentes</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Asesoría de compra tecnológica', 'B/. 20.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Instalación de equipo de oficina</td><td>PC, monitor y periféricos</td><td class="service-price">B/. 25.00</td><td><button class="btn-action" onclick="solicitarServicio('Instalación de equipo de oficina', 'B/. 25.00')">Cotizar</button></td></tr>
+            <tr><td class="service-name">Configuración de control parental</td><td>Por dispositivo</td><td class="service-price">B/. 20.00</td><td><button class="btn-action" onclick="solicitarServicio('Configuración de control parental', 'B/. 20.00')">Cotizar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; ABREGO TECH — Soporte Técnico Informático en Ciudad de Panamá</p>
+    <p style="margin-top: 0.5rem; color: #a0aec0; font-size: 0.8rem;">Precios referenciales orientativos sujetos a diagnóstico final y confirmación de repuestos.</p>
+  </footer>
+
+  <!-- Modal WhatsApp -->
+  <div class="modal" id="contactModal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Solicitar Servicio</h3>
+      <p id="modalDescription">Te redirigiremos a WhatsApp con los detalles de tu consulta.</p>
+      <a href="#" id="modalWaBtn" target="_blank" class="btn-whatsapp">Enviar mensaje a WhatsApp</a>
+      <button class="btn-close" onclick="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script>
+    // Reemplazar con el número real de WhatsApp de ABREGO TECH (incluyendo código de país 507)
+    const NUMERO_WHATSAPP = "50760000000"; 
+
+    function solicitarServicio(nombre, precio) {
+      const mensaje = `Hola ABREGO TECH, me interesa cotizar el siguiente servicio: *${nombre}* (${precio}). ¿Podrían brindarme más información?`;
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+      
+      document.getElementById('modalTitle').innerText = nombre;
+      document.getElementById('modalDescription').innerText = `Precio base estimado: ${precio}`;
+      document.getElementById('modalWaBtn').href = url;
+      document.getElementById('contactModal').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+      document.getElementById('contactModal').style.display = 'none';
+    }
+
+    function filtrarCategoria(cat) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const blocks = document.querySelectorAll('.category-block');
+      blocks.forEach(block => {
+        if (cat === 'todas') {
+          block.style.display = 'block';
+        } else {
+          block.style.display = block.classList.contains(cat) ? 'block' : 'none';
+        }
+      });
+    }
+
+    function filtrarServicios() {
+      const filter = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('.service-table tbody tr');
+      const blocks = document.querySelectorAll('.category-block');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+
+      // Ocultar bloques de categorías vacíos durante la búsqueda
+      blocks.forEach(block => {
+        const visibleRows = block.querySelectorAll('tbody tr:not([style*="display: none"])');
+        block.style.display = visibleRows.length > 0 ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
